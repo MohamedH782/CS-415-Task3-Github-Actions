@@ -1,0 +1,38 @@
+name: Java Maven CI
+
+# When should this workflow run?
+on:
+  push:
+    branches: [ "main" ]        # Runs whenever you push to main
+  pull_request:
+    branches: [ "main" ]        # Runs whenever someone opens a PR to main
+
+# What should it do?
+jobs:
+  build:
+    runs-on: ubuntu-latest      # Uses a clean Linux VM
+
+    steps:
+      # 1. Download your project code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Java (Temurin is the free OpenJDK)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'        # Speeds up future runs
+
+      # 3. Run your unit tests
+      - name: Run Maven tests
+        run: mvn -B test
+
+      # 4. Save test results (optional but good practice)
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maven-test-results
+          path: target/surefire-reports/
