@@ -12,9 +12,12 @@ public class Main {
         } else {
             System.out.println(" Test failed: Expected 10");
         }
+
+        System.out.println("Pull request test run ✅");
     }
 
     public static int addNumbers(int a, int b) {
         return a + b;
     }
+
 }
