@@ -13,7 +13,14 @@ public class Main {
             System.out.println(" Test failed: Expected 10");
         }
 
-        System.out.println("Pull request test run ✅");
+        System.out.println("Pull request test run ");
+
+        System.out.println("Test number 3");
+        System.out.println("Test number 4");
+        System.out.println("Test number 5");
+
+
+
     }
 
     public static int addNumbers(int a, int b) {
